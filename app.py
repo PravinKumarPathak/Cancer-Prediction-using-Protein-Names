@@ -31,8 +31,10 @@ lr = LogisticRegression(C=0.01, solver='liblinear')
 lr.fit(X_train, Y_train)
 yhat = lr.predict(X_test)
 
-print("Avg F1-score:%0.4f" %f1_score(Y_test, yhat, average='weighted'))
-print("Jaccard score:%0.4f" %jaccard_score(Y_test, yhat, pos_label=0))
+fscore = round(f1_score(Y_test, yhat, average='weighted'), 4)
+jscore = round(jaccard_score(Y_test, yhat, pos_label=0), 4)
+print("Avg F1-score:%0.4f" %fscore)
+print("Jaccard score:%0.4f" %jscore)
 
 
 
@@ -89,15 +91,16 @@ def hello():
 
         pred = lr.predict(test_data)
         print(pred)
-        res = pred[0]
-        if(res==1):
-            return f'Model Prediction : This protein sequence is related to cancer'
+        if(pred[0]==1):
+            res = 'This protein sequence is related to cancer'
         else:
-            return f'Model Prediction : This protein sequence is not related to cancer'
-    return render_template('front.html')
+            res = 'This protein sequence is not related to cancer'
+
+        result = {'model':"Logistic Regression", 'pred':res, 'fsc':fscore, 'jsc':jscore}
+        return render_template('result.html', result=result)
+        
+    return render_template('form.html')
 
 
 if __name__=='__main__':
     app.run(debug=True)
-
-
