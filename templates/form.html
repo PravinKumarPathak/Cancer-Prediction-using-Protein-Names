@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancer Predictor</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #f6d365, #fda085);
+            color: #333;
+        }
+
+        .container {
+            border: 2px solid #f6d365;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Cancer Prediction using Protein Sequence</h1>
+        <form action="{{ url_for('hello') }}" method="POST">
+            <div class="form-group">
+                <label for="title">Protein Sequence</label>
+                <br>
+                <textarea name="proteinInput" id="title" placeholder="Enter Protein Sequence here" rows="7" cols="'60" required></textarea>
+            </div>
+
+
+            <div class="form-footer">
+                <input class="btn btn-success" type="submit" value="Check">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
