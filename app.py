@@ -4,10 +4,18 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix,ConfusionMatrixDisplay,f1_score,jaccard_score
+<<<<<<< HEAD
+=======
+#from matplotlib import pyplot as plt
+>>>>>>> 8ebf39e7ac3bb8437b32b8ff7794d173e7365177
 
 df = pd.read_csv('Human_Cancer_Genes_Data.csv')
 
 
+<<<<<<< HEAD
+=======
+#print(df.head())
+>>>>>>> 8ebf39e7ac3bb8437b32b8ff7794d173e7365177
 
 print(df.columns)
 
@@ -63,6 +71,10 @@ def amino_Sequence(sequence):
 
 @app.route('/', methods=['GET','POST'])
 def hello():
+<<<<<<< HEAD
+=======
+    #return f'Avg F1-score:{f1_score(Y_test, yhat, average='weighted')}'
+>>>>>>> 8ebf39e7ac3bb8437b32b8ff7794d173e7365177
     if request.method == 'POST':
         sequence = request.form['proteinInput']
 
@@ -101,5 +113,8 @@ def hello():
 
 if __name__=='__main__':
     app.run(debug=True)
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 8ebf39e7ac3bb8437b32b8ff7794d173e7365177
