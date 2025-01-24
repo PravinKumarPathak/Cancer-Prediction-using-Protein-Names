@@ -5,59 +5,17 @@
         <title>Cancer Predictor</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-        <!-- <style>
-            body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    }
-
-    .header, .footer {
-    background-color: #333;
-    color: #e62020;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem 0;
-    }
-
-    header h1, footer p {
-    margin: 0;
-    }
-            body {
-                background: linear-gradient(to right, #f6d365, #fda085);
-                color: #333;
-            }
-
-            .container {
-                border: 2px solid #f6d365;
-                border-radius: 15px;
-                padding: 20px;
-                margin: 20px auto;
-                background-color: white;
-                box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            }
-
-            .form-footer {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-        </style> -->
+       
     </head>
     <body>
         <header class="header">
             <h1>Cancer Prediction Model</h1>
         </header>
         <div class="container">
-            <h1 class="text-center">Cancer Prediction using Protein Sequence / Amino Acid Sequence </h1>
+            <h1 class="text-center">Cancer Prediction using Protein </h1>
             <form action="{{ url_for('hello') }}" method="POST">
                 <div class="form-group">
-                    <textarea name="proteinInput" id="title" placeholder="Enter Protein Sequence / Amino Acid Squence here" rows="7" cols="'60" required></textarea>
+                    <textarea name="proteinInput" id="title" placeholder="Enter Protein Name " rows="7" cols="'60" required></textarea>
                 </div>
 
 
