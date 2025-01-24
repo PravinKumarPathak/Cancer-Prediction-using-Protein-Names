@@ -1,6 +1,7 @@
 import warnings
 warnings.filterwarnings('ignore')
 import pandas as pd
+import requests
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix,ConfusionMatrixDisplay,f1_score,jaccard_score
@@ -59,11 +60,38 @@ def amino_Sequence(sequence):
             amino_seq[f"AA_{aa}"] = sequence.count(aa) / len(sequence)
     return amino_seq
 
+# get protein sequence from protein name 
+
+
+def get_protein_sequence(protein_name):
+    base_url = "https://rest.uniprot.org/uniprotkb/search"
+    query = f"query={protein_name}&fields=accession,sequence"
+    headers = {"Accept": "application/json"}
+    
+    response = requests.get(f"{base_url}?{query}", headers=headers)
+    
+    if response.status_code == 200:
+        data = response.json()
+        results = data.get("results", [])
+        if results:
+            # Access the first result (or iterate for multiple hits)
+            protein_data = results[0]
+            accession = protein_data.get("primaryAccession", "Unknown")
+            sequence = protein_data.get("sequence", {}).get("value", "No sequence found")
+            return accession, sequence
+        else:
+            return None, "No matching protein found."
+    else:
+        return None, f"Failed to fetch data. Status code: {response.status_code}"
 
 @app.route('/', methods=['GET','POST'])
 def hello():
     if request.method == 'POST':
-        sequence = request.form['proteinInput']
+        protein_Name = request.form['proteinInput']
+        accession, sequence = get_protein_sequence(protein_Name)
+        if not accession:
+            return "Errror!! Not a protein sequence."+"\nPlease enter a protein sequence"
+
 
         features = {
             'Sequence' : sequence
@@ -88,9 +116,9 @@ def hello():
         pred = lr.predict(test_data)
         print(pred)
         if(pred[0]==1):
-            res = 'This protein sequence is related to cancer'
+            res = 'This protein is related to cancer'
         else:
-            res = 'This protein sequence is not related to cancer'
+            res = 'This protein is not related to cancer'
 
         result = {'model':"Logistic Regression", 'pred':res, 'fsc':fscore, 'jsc':jscore}
         return render_template('result.html', result=result)
