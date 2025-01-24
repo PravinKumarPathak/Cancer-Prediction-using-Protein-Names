@@ -90,7 +90,7 @@ def hello():
         protein_Name = request.form['proteinInput']
         accession, sequence = get_protein_sequence(protein_Name)
         if not accession:
-            return "Errror!! Not a protein sequence."+"\nPlease enter a protein sequence"
+            return "Errror!! Invalid input."+"\nPlease enter a valid protein name"
 
 
         features = {
