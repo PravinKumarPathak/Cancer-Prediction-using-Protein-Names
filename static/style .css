@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  
+}
+body{
+    background:#101827;
+}
+#container{
+    margin: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#header{
+    color: #cc84f5;
+    font-size: 40px;
+}
+#sub-header{
+    color: #c994ce;
+    font-size: 16px;
+}
+#input{
+    margin: 20px;
+}
+#input-text{
+    background: #454c59;
+    color: white;
+    width: 360px;
+    height: 30px;
+    padding: 10px;
+}
+button{
+    color: #c994ce;
+    display: inline;
+    width: 180px;
+    height: 30px;
+}
